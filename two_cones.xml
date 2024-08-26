@@ -1,0 +1,487 @@
+<!-- ======================================================
+	Two free floating juggling end-effectors!
+
+    mail@kaiploeger.net
+    ====================================================== -->
+
+<mujoco model="two_cones">
+
+    <option integrator="Euler" timestep="0.002" gravity="0 0 -9.81" viscosity="0"/>
+    <compiler coordinate="local" angle="radian" inertiagrouprange="2 2" meshdir="meshes/"/>
+
+    <default>
+        <default class="col">
+            <geom type="mesh" contype="0" conaffinity="1" group="4" rgba="0.5 0.6 0.7 1" solref="-60000 -400" density="0" condim="6" friction="0.05 0.005 0.0001"/>
+        </default>
+        <default class="viz">
+            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" density="0"/>
+        </default>
+        <default class="ball">
+            <geom type="sphere" size="0.0375" mass="0.067" contype="1" conaffinity="0" group="2" rgba=".75 .75 .75 1" solref="-60000 -400" condim="6" friction="0.05 0.005 0.0001"/>
+        </default>
+        <default class="ball_des">
+            <geom type="sphere" size="0.0375" contype="0" conaffinity="0" group="3" rgba="0 0.5 1 0.3" density="0"/>
+        </default>
+    </default>
+
+    <asset>
+        <mesh file="cone_convex_part_side.stl"/>
+        <mesh file="throwing_tool.stl"/>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+    </asset>
+
+    <worldbody>
+        <light directional="false" diffuse=".4 .4 .4" specular="0 0 0" pos="0 0 10" dir="0 0 -1" castshadow="false"/>
+        <geom name="floor" pos="0 0 0" size="2 2 .25" type="plane" material="matplane" condim="3" solref="-16000 -200" contype="1"/>
+
+        <body name="hands/hand0">
+            <freejoint name="hand0"/>
+            <inertial pos="0 0 0" mass="10000" fullinertia="1 1 1 0 0 0"/> 
+            <geom class="viz" mesh="throwing_tool" pos="-0.0953 0 0.005" euler="0 2.095 1.570796327" rgba=".3 .3 .3 1"/>
+
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.174"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.348"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.523"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.697"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.872"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.046"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.221"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.395"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.570"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.744"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.918"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.093"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.267"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.442"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.616"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.791"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.965"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.174"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.348"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.523"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.697"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.872"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.046"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.221"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.395"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.570"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.744"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.918"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.093"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.267"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.442"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.616"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.791"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.965"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -3.142"/>
+        </body>
+
+        <body name="hands/hand1">
+            <freejoint name="hand1"/>
+            <inertial pos="0 0 0" mass="10000" fullinertia="1 1 1 0 0 0"/> 
+            <geom class="viz" mesh="throwing_tool" pos="-0.0953 0 0.005" euler="0 2.095 1.570796327" rgba=".3 .3 .3 1"/>
+
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.174"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.348"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.523"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.697"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 0.872"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.046"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.221"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.395"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.570"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.744"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 1.918"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.093"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.267"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.442"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.616"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.791"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 2.965"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.174"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.348"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.523"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.697"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -0.872"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.046"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.221"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.395"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.570"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.744"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -1.918"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.093"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.267"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.442"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.616"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.791"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -2.965"/>
+            <geom class="col" mesh="cone_convex_part_side" pos="0 0 -0.048" euler="0 0 -3.142"/>
+        </body>
+
+        <body name="balls/ball0" pos="1.15 -0.45 0.0375">
+            <freejoint name="ball0"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball1" pos="1.15 -0.35 0.0375">
+            <freejoint name="ball1"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball2" pos="1.15 -0.25 0.0375">
+            <freejoint name="ball2"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball3" pos="1.15 -0.15 0.0375">
+            <freejoint name="ball3"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball4" pos="1.15 -0.05 0.0375">
+            <freejoint name="ball4"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball5" pos="1.15 0.05 0.0375">
+            <freejoint name="ball5"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball6" pos="1.15 0.15 0.0375">
+            <freejoint name="ball6"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball7" pos="1.15 0.25 0.0375">
+            <freejoint name="ball7"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball8" pos="1.15 0.35 0.0375">
+            <freejoint name="ball8"/>
+            <geom class="ball"/>
+        </body>
+        
+        <body name="balls/ball9" pos="1.15 0.45 0.0375">
+            <freejoint name="ball9"/>
+            <geom class="ball"/>
+        </body>
+        
+        <body name="balls/ball10" pos="1.25 -0.45 0.0375">
+            <freejoint name="ball10"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball11" pos="1.25 -0.35 0.0375">
+            <freejoint name="ball11"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball12" pos="1.25 -0.25 0.0375">
+            <freejoint name="ball12"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball13" pos="1.25 -0.15 0.0375">
+            <freejoint name="ball13"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball14" pos="1.25 -0.05 0.0375">
+            <freejoint name="ball14"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball15" pos="1.25 0.05 0.0375">
+            <freejoint name="ball15"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball16" pos="1.25 0.15 0.0375">
+            <freejoint name="ball16"/>
+            <geom class="ball"/>
+        </body>
+                
+        <body name="balls/ball17" pos="1.25 0.25 0.0375">
+            <freejoint name="ball17"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball18" pos="1.25 0.35 0.0375">
+            <freejoint name="ball18"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball19" pos="1.25 0.45 0.0375">
+            <freejoint name="ball19"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball20" pos="1.35 -0.45 0.0375">
+            <freejoint name="ball20"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball21" pos="1.35 -0.35 0.0375">
+            <freejoint name="ball21"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball22" pos="1.35 -0.25 0.0375">
+            <freejoint name="ball22"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball23" pos="1.35 -0.15 0.0375">
+            <freejoint name="ball23"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball24" pos="1.35 -0.05 0.0375">
+            <freejoint name="ball24"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball25" pos="1.35 0.05 0.0375">
+            <freejoint name="ball25"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball26" pos="1.35 0.15 0.0375">
+            <freejoint name="ball26"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball27" pos="1.35 0.25 0.0375">
+            <freejoint name="ball27"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball28" pos="1.35 0.35 0.0375">
+            <freejoint name="ball28"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball29" pos="1.35 0.45 0.0375">
+            <freejoint name="ball29"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball30" pos="1.45 -0.45 0.0375">
+            <freejoint name="ball30"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball31" pos="1.45 -0.35 0.0375">
+            <freejoint name="ball31"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball32" pos="1.45 -0.25 0.0375">
+            <freejoint name="ball32"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball33" pos="1.45 -0.15 0.0375">
+            <freejoint name="ball33"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball34" pos="1.45 -0.05 0.0375">
+            <freejoint name="ball34"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball35" pos="1.45 0.05 0.0375">
+            <freejoint name="ball35"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball36" pos="1.45 0.15 0.0375">
+            <freejoint name="ball36"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball37" pos="1.45 0.25 0.0375">
+            <freejoint name="ball37"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball38" pos="1.45 0.35 0.0375">
+            <freejoint name="ball38"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls/ball39" pos="1.45 0.45 0.0375">
+            <freejoint name="ball39"/>
+            <geom class="ball"/>
+        </body>
+
+        <body name="balls_des/ball0" pos="1.15 -0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball1" pos="1.15 -0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball2" pos="1.15 -0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball3" pos="1.15 -0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball4" pos="1.15 -0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball5" pos="1.15 0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball6" pos="1.15 0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball7" pos="1.15 0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball8" pos="1.15 0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball9" pos="1.15 0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball10" pos="1.25 -0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball11" pos="1.25 -0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball12" pos="1.25 -0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball13" pos="1.25 -0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball14" pos="1.25 -0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball15" pos="1.25 0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball16" pos="1.25 0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball17" pos="1.25 0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball18" pos="1.25 0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball19" pos="1.25 0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball20" pos="1.35 -0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball21" pos="1.35 -0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball22" pos="1.35 -0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball23" pos="1.35 -0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball24" pos="1.35 -0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball25" pos="1.35 0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball26" pos="1.35 0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball27" pos="1.35 0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball28" pos="1.35 0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball29" pos="1.35 0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball30" pos="1.45 -0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball31" pos="1.45 -0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball32" pos="1.45 -0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball33" pos="1.45 -0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball34" pos="1.45 -0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball35" pos="1.45 0.05 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball36" pos="1.45 0.15 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball37" pos="1.45 0.25 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball38" pos="1.45 0.35 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+        <body name="balls_des/ball39" pos="1.45 0.45 0.0375" mocap="true">
+            <geom class="ball_des"/>
+        </body>
+
+    </worldbody>
+
+</mujoco>
+
